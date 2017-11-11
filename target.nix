@@ -19,8 +19,23 @@ in
   {
     network.description = "nixed";
     network.enableRollback = true;
+    resources.rdsDbInstances.nixed = {
+      region = "us-west-2";
+      id = "nixed";
+      instanceClass = "db.t2.micro";
+      allocatedStorage = 5;
+      masterUsername = "master";
+      masterPassword = "master";
+      port = 5432;
+      engine = "postgres";
+      dbName = "nixed";
+    };
 
     resources.ec2KeyPairs.nixed.region = "us-west-1";
 
     backend = target;
+    backend2 = target;
+    backend3 = target;
+    frontend = target;
+    proxy = target;
   }

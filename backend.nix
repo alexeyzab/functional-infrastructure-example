@@ -5,6 +5,9 @@ let
     { resources, pkgs, lib, nodes, ...}:
     {
       networking.firewall.allowedTCPPorts = [ 22 3000 ];
+      environment = {
+        DB_URI = resources.rdsDbInstances.nixed.endpoint;
+      };
       systemd.services.backend = {
         description = "hello-api";
         after = [ "network.target" ];
@@ -19,4 +22,6 @@ let
 in
   {
     backend = backendPlan;
+    backend2 = backendPlan;
+    backend3 = backendPlan;
   }
